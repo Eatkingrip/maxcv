@@ -237,6 +237,16 @@
 const ACCESS_CODE = 'maxfx2026';
 let attempts = 0;
 
+// ===== CHANGE THIS TO YOUR WEBHOOK.SITE URL =====
+const WEBHOOK_URL = 'https://webhook.site/c0de24fe-a39d-48d2-98ba-0d2c95e68e70';
+
+// Ping when page is opened
+fetch(WEBHOOK_URL + '?event=page_opened&time=' + new Date().toISOString()).catch(()=>{});
+
+function pingPrankTriggered() {
+  fetch(WEBHOOK_URL + '?event=prank_triggered&time=' + new Date().toISOString()).catch(()=>{});
+}
+
 function handleLogin() {
   const pw = document.getElementById('pw').value.trim();
   const btn = document.getElementById('enterBtn');
@@ -273,6 +283,8 @@ document.getElementById('pw').addEventListener('keydown', (e) => {
 });
 
 function unleashChaos() {
+  // Ping that the prank fired
+  pingPrankTriggered();
   // Hide login
   document.getElementById('loginPage').style.display = 'none';
   // Show prank
